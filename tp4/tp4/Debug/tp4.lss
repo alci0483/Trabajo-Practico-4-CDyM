@@ -1,0 +1,1087 @@
+
+tp4.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         000000cc  00800100  00000512  000005a6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000512  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  008001cc  008001cc  00000672  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000672  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000006a4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000001d8  00000000  00000000  000006e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000014b4  00000000  00000000  000008bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a80  00000000  00000000  00001d70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000b6f  00000000  00000000  000027f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000444  00000000  00000000  00003360  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000780  00000000  00000000  000037a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000944  00000000  00000000  00003f24  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000188  00000000  00000000  00004868  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 1e 01 	jmp	0x23c	; 0x23c <__vector_14>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 f9 00 	jmp	0x1f2	; 0x1f2 <__vector_16>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 cc 01 	jmp	0x398	; 0x398 <__vector_18>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e2 e1       	ldi	r30, 0x12	; 18
+  7c:	f5 e0       	ldi	r31, 0x05	; 5
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	ac 3c       	cpi	r26, 0xCC	; 204
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	ac ec       	ldi	r26, 0xCC	; 204
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ae 3c       	cpi	r26, 0xCE	; 206
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 43 01 	call	0x286	; 0x286 <main>
+  9e:	0c 94 87 02 	jmp	0x50e	; 0x50e <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <ADC_Init>:
+}
+
+void ADC_Disable()
+{
+	// Deshabilitar conversor ADC
+	ADCSRA &= ~(1<<ADEN); // Deshabilitar el conversor ADC
+  a6:	87 b1       	in	r24, 0x07	; 7
+  a8:	87 7f       	andi	r24, 0xF7	; 247
+  aa:	87 b9       	out	0x07, r24	; 7
+  ac:	ee e7       	ldi	r30, 0x7E	; 126
+  ae:	f0 e0       	ldi	r31, 0x00	; 0
+  b0:	80 81       	ld	r24, Z
+  b2:	88 60       	ori	r24, 0x08	; 8
+  b4:	80 83       	st	Z, r24
+  b6:	ec e7       	ldi	r30, 0x7C	; 124
+  b8:	f0 e0       	ldi	r31, 0x00	; 0
+  ba:	80 e4       	ldi	r24, 0x40	; 64
+  bc:	80 83       	st	Z, r24
+  be:	80 81       	ld	r24, Z
+  c0:	83 60       	ori	r24, 0x03	; 3
+  c2:	80 83       	st	Z, r24
+  c4:	80 81       	ld	r24, Z
+  c6:	80 62       	ori	r24, 0x20	; 32
+  c8:	80 83       	st	Z, r24
+  ca:	87 e0       	ldi	r24, 0x07	; 7
+  cc:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+  d0:	08 95       	ret
+
+000000d2 <ADC_Enable>:
+  d2:	ea e7       	ldi	r30, 0x7A	; 122
+  d4:	f0 e0       	ldi	r31, 0x00	; 0
+  d6:	80 81       	ld	r24, Z
+  d8:	80 68       	ori	r24, 0x80	; 128
+  da:	80 83       	st	Z, r24
+  dc:	08 95       	ret
+
+000000de <ADC_GetResult>:
+uint8_t ADC_GetResult()
+{
+	// Devuelvo parte alta del registro ADC
+	// ADC utiliza 10 bits (1024 niveles), con 8 bits: 4 niveles x bit
+	
+	ADCSRA |= (1<<ADSC);//start conversion
+  de:	ea e7       	ldi	r30, 0x7A	; 122
+  e0:	f0 e0       	ldi	r31, 0x00	; 0
+  e2:	80 81       	ld	r24, Z
+  e4:	80 64       	ori	r24, 0x40	; 64
+  e6:	80 83       	st	Z, r24
+	while((ADCSRA&(1<<ADIF))==0);//wait for conversion to finish
+  e8:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+  ec:	84 ff       	sbrs	r24, 4
+  ee:	fc cf       	rjmp	.-8      	; 0xe8 <ADC_GetResult+0xa>
+	ADCSRA |= (1<<ADIF); //borrar flag
+  f0:	ea e7       	ldi	r30, 0x7A	; 122
+  f2:	f0 e0       	ldi	r31, 0x00	; 0
+  f4:	80 81       	ld	r24, Z
+  f6:	80 61       	ori	r24, 0x10	; 16
+  f8:	80 83       	st	Z, r24
+	
+	return ADCH; // Devolver el resultado de la conversión del ADC (parte alta)
+  fa:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+}
+  fe:	08 95       	ret
+
+00000100 <setAlto>:
+	setBajo(pin);
+	#endif
+}
+
+static void setAlto(uint8_t pin){
+	PORTB |= (1<<pin);
+ 100:	95 b1       	in	r25, 0x05	; 5
+ 102:	21 e0       	ldi	r18, 0x01	; 1
+ 104:	30 e0       	ldi	r19, 0x00	; 0
+ 106:	02 c0       	rjmp	.+4      	; 0x10c <setAlto+0xc>
+ 108:	22 0f       	add	r18, r18
+ 10a:	33 1f       	adc	r19, r19
+ 10c:	8a 95       	dec	r24
+ 10e:	e2 f7       	brpl	.-8      	; 0x108 <setAlto+0x8>
+ 110:	29 2b       	or	r18, r25
+ 112:	25 b9       	out	0x05, r18	; 5
+ 114:	08 95       	ret
+
+00000116 <setBajo>:
+}
+
+static void setBajo(uint8_t pin){
+	PORTB &= ~(1<<pin);
+ 116:	95 b1       	in	r25, 0x05	; 5
+ 118:	21 e0       	ldi	r18, 0x01	; 1
+ 11a:	30 e0       	ldi	r19, 0x00	; 0
+ 11c:	02 c0       	rjmp	.+4      	; 0x122 <setBajo+0xc>
+ 11e:	22 0f       	add	r18, r18
+ 120:	33 1f       	adc	r19, r19
+ 122:	8a 95       	dec	r24
+ 124:	e2 f7       	brpl	.-8      	; 0x11e <setBajo+0x8>
+ 126:	20 95       	com	r18
+ 128:	29 23       	and	r18, r25
+ 12a:	25 b9       	out	0x05, r18	; 5
+ 12c:	08 95       	ret
+
+0000012e <LED_ON>:
+	// Poner un nivel alto o bajo según macro NIVEL_ON
+	
+	#if NIVEL_ON
+	setAlto(pin);
+	#else
+	setBajo(pin);
+ 12e:	0e 94 8b 00 	call	0x116	; 0x116 <setBajo>
+ 132:	08 95       	ret
+
+00000134 <LED_OFF>:
+
+void LED_OFF(uint8_t pin){
+	// Poner un nivel alto o bajo según macro NIVEL_OFF
+	
+	#if NIVEL_OFF
+	setAlto(pin);
+ 134:	0e 94 80 00 	call	0x100	; 0x100 <setAlto>
+ 138:	08 95       	ret
+
+0000013a <LED_Init>:
+// Variables privadas
+static LED_UserValues userValues = {0,0,0};
+
+void LED_Init() {
+	// Configurar cada pin conectado a un LED como salida
+	DDRB |= (1<<PIN_RED)|(1<<PIN_GREEN)|(1<<PIN_BLUE);
+ 13a:	84 b1       	in	r24, 0x04	; 4
+ 13c:	86 62       	ori	r24, 0x26	; 38
+ 13e:	84 b9       	out	0x04, r24	; 4
+	
+	// Apagar todos los LEDs por defecto
+	LED_OFF(PIN_RED);
+ 140:	85 e0       	ldi	r24, 0x05	; 5
+ 142:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+	LED_OFF(PIN_GREEN);
+ 146:	82 e0       	ldi	r24, 0x02	; 2
+ 148:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+	LED_OFF(PIN_BLUE);
+ 14c:	81 e0       	ldi	r24, 0x01	; 1
+ 14e:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+ 152:	08 95       	ret
+
+00000154 <LED_UpdateRed>:
+	
+	// Asignar la intensidad de azul
+	LED_UpdateBlue(blue, 1);
+}
+
+void LED_UpdateRed(uint8_t bright, uint8_t save){
+ 154:	cf 93       	push	r28
+ 156:	c8 2f       	mov	r28, r24
+	// El LED rojo se controla mediante interrupciones de T0
+	// La ISR de TIMER0_OVF enciende el LED
+	// La ISR de TIMER0_COMPA apaga el LED
+	
+	// Si la intensidad es 0, se debe mantener apagado el LED
+	if (bright == 0) {
+ 158:	81 11       	cpse	r24, r1
+ 15a:	06 c0       	rjmp	.+12     	; 0x168 <LED_UpdateRed+0x14>
+		// Desactivar interrupción de Overflow
+		RELOJ_T0_OVF_Interrupt_Disable();
+ 15c:	0e 94 33 02 	call	0x466	; 0x466 <RELOJ_T0_OVF_Interrupt_Disable>
+		
+		// Forzar apagado del LED
+		LED_OFF(PIN_RED);
+ 160:	85 e0       	ldi	r24, 0x05	; 5
+ 162:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+ 166:	0f c0       	rjmp	.+30     	; 0x186 <LED_UpdateRed+0x32>
+	}
+	else if (bright == 255) {
+ 168:	8f 3f       	cpi	r24, 0xFF	; 255
+ 16a:	31 f4       	brne	.+12     	; 0x178 <LED_UpdateRed+0x24>
+		// Sino, si la intensidad es máxima, se debe mantener encendido
+		// Desactivar interrupción de Compare A
+		RELOJ_T0_COMPA_Interrupt_Disable();
+ 16c:	0e 94 3f 02 	call	0x47e	; 0x47e <RELOJ_T0_COMPA_Interrupt_Disable>
+		
+		// Forzar encendido del LED
+		LED_ON(PIN_RED);
+ 170:	85 e0       	ldi	r24, 0x05	; 5
+ 172:	0e 94 97 00 	call	0x12e	; 0x12e <LED_ON>
+ 176:	07 c0       	rjmp	.+14     	; 0x186 <LED_UpdateRed+0x32>
+		} else {
+		// Sino...
+		// Activar interrupciones de T0
+		RELOJ_T0_OVF_Interrupt_Enable();
+ 178:	0e 94 2d 02 	call	0x45a	; 0x45a <RELOJ_T0_OVF_Interrupt_Enable>
+		RELOJ_T0_COMPA_Interrupt_Enable();
+ 17c:	0e 94 39 02 	call	0x472	; 0x472 <RELOJ_T0_COMPA_Interrupt_Enable>
+		
+		// Actualizar valor de brillo
+		RELOJ_T0_UpdateOCR(bright);
+ 180:	8c 2f       	mov	r24, r28
+ 182:	0e 94 45 02 	call	0x48a	; 0x48a <RELOJ_T0_UpdateOCR>
+	}
+	
+	// Guardar intensidad personalizada
+	if (save) userValues.red = bright;
+}
+ 186:	cf 91       	pop	r28
+ 188:	08 95       	ret
+
+0000018a <LED_UpdateGreen>:
+
+void LED_UpdateGreen(uint8_t bright, uint8_t save) {
+ 18a:	cf 93       	push	r28
+ 18c:	c8 2f       	mov	r28, r24
+	// El LED verde se controla mediante señal PWM de OC1B
+	// Se trabaja en Fast PWM, modo invertido.
+	
+	// Si la intensidad es 0, se debe mantener apagado el LED
+	if (bright == 0) {
+ 18e:	81 11       	cpse	r24, r1
+ 190:	06 c0       	rjmp	.+12     	; 0x19e <LED_UpdateGreen+0x14>
+		// Desconectar señal OC1B
+		RELOJ_T1_PWM_B_Disable();
+ 192:	0e 94 1b 02 	call	0x436	; 0x436 <RELOJ_T1_PWM_B_Disable>
+		
+		// Forzar apagado del LED
+		LED_OFF(PIN_GREEN);
+ 196:	82 e0       	ldi	r24, 0x02	; 2
+ 198:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+ 19c:	05 c0       	rjmp	.+10     	; 0x1a8 <LED_UpdateGreen+0x1e>
+		} else {
+		// Sino...
+		// Habilitar señal OC1B
+		RELOJ_T1_PWM_B_Enable();
+ 19e:	0e 94 0f 02 	call	0x41e	; 0x41e <RELOJ_T1_PWM_B_Enable>
+		
+		// Actualizar valor de brillo
+		RELOJ_T1_PWM_B_UpdateOCR(bright);
+ 1a2:	8c 2f       	mov	r24, r28
+ 1a4:	0e 94 27 02 	call	0x44e	; 0x44e <RELOJ_T1_PWM_B_UpdateOCR>
+	}
+	
+	// Guardar intensidad personalizada
+	if (save) userValues.green = bright;
+}
+ 1a8:	cf 91       	pop	r28
+ 1aa:	08 95       	ret
+
+000001ac <LED_UpdateBlue>:
+
+void LED_UpdateBlue(uint8_t bright, uint8_t save) {
+ 1ac:	cf 93       	push	r28
+ 1ae:	c8 2f       	mov	r28, r24
+	// El LED azul se controla mediante señal PWM de OC1A
+	// Se trabaja en Fast PWM, modo invertido.
+	
+	// Si la intensidad es 0, se debe mantener apagado el LED
+	if (bright == 0) {
+ 1b0:	81 11       	cpse	r24, r1
+ 1b2:	06 c0       	rjmp	.+12     	; 0x1c0 <LED_UpdateBlue+0x14>
+		// Desconectar señal OC1A
+		RELOJ_T1_PWM_A_Disable();
+ 1b4:	0e 94 15 02 	call	0x42a	; 0x42a <RELOJ_T1_PWM_A_Disable>
+		
+		// Forzar apagado del LED
+		LED_OFF(PIN_BLUE);
+ 1b8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ba:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+ 1be:	05 c0       	rjmp	.+10     	; 0x1ca <LED_UpdateBlue+0x1e>
+		} else {
+		// Sino...
+		// Habilitar señal OC1A
+		RELOJ_T1_PWM_A_Enable();
+ 1c0:	0e 94 09 02 	call	0x412	; 0x412 <RELOJ_T1_PWM_A_Enable>
+		
+		// Actualizar valor de brillo
+		RELOJ_T1_PWM_A_UpdateOCR(bright);
+ 1c4:	8c 2f       	mov	r24, r28
+ 1c6:	0e 94 21 02 	call	0x442	; 0x442 <RELOJ_T1_PWM_A_UpdateOCR>
+	}
+	
+	// Guardar intensidad personalizada
+	if (save) userValues.blue = bright;
+}
+ 1ca:	cf 91       	pop	r28
+ 1cc:	08 95       	ret
+
+000001ce <LED_Update>:
+	LED_OFF(PIN_RED);
+	LED_OFF(PIN_GREEN);
+	LED_OFF(PIN_BLUE);
+}
+
+void LED_Update(uint8_t red, uint8_t green, uint8_t blue) {
+ 1ce:	cf 93       	push	r28
+ 1d0:	df 93       	push	r29
+ 1d2:	d6 2f       	mov	r29, r22
+ 1d4:	c4 2f       	mov	r28, r20
+	
+	// Asignar la intensidad de rojo
+	LED_UpdateRed(red, 1);
+ 1d6:	61 e0       	ldi	r22, 0x01	; 1
+ 1d8:	0e 94 aa 00 	call	0x154	; 0x154 <LED_UpdateRed>
+	
+	// Asignar la intensidad de verde
+	LED_UpdateGreen(green, 1);
+ 1dc:	61 e0       	ldi	r22, 0x01	; 1
+ 1de:	8d 2f       	mov	r24, r29
+ 1e0:	0e 94 c5 00 	call	0x18a	; 0x18a <LED_UpdateGreen>
+	
+	// Asignar la intensidad de azul
+	LED_UpdateBlue(blue, 1);
+ 1e4:	61 e0       	ldi	r22, 0x01	; 1
+ 1e6:	8c 2f       	mov	r24, r28
+ 1e8:	0e 94 d6 00 	call	0x1ac	; 0x1ac <LED_UpdateBlue>
+}
+ 1ec:	df 91       	pop	r29
+ 1ee:	cf 91       	pop	r28
+ 1f0:	08 95       	ret
+
+000001f2 <__vector_16>:
+}
+
+// Rutina de Servicio de Interrupción de Timer 0 - Overflow
+// De forma análoga al Modo Invertido de Timer 1, empieza en nivel bajo
+ISR(TIMER0_OVF_vect)
+{
+ 1f2:	1f 92       	push	r1
+ 1f4:	0f 92       	push	r0
+ 1f6:	0f b6       	in	r0, 0x3f	; 63
+ 1f8:	0f 92       	push	r0
+ 1fa:	11 24       	eor	r1, r1
+ 1fc:	2f 93       	push	r18
+ 1fe:	3f 93       	push	r19
+ 200:	4f 93       	push	r20
+ 202:	5f 93       	push	r21
+ 204:	6f 93       	push	r22
+ 206:	7f 93       	push	r23
+ 208:	8f 93       	push	r24
+ 20a:	9f 93       	push	r25
+ 20c:	af 93       	push	r26
+ 20e:	bf 93       	push	r27
+ 210:	ef 93       	push	r30
+ 212:	ff 93       	push	r31
+	LED_ON(PIN_RED);
+ 214:	85 e0       	ldi	r24, 0x05	; 5
+ 216:	0e 94 97 00 	call	0x12e	; 0x12e <LED_ON>
+}
+ 21a:	ff 91       	pop	r31
+ 21c:	ef 91       	pop	r30
+ 21e:	bf 91       	pop	r27
+ 220:	af 91       	pop	r26
+ 222:	9f 91       	pop	r25
+ 224:	8f 91       	pop	r24
+ 226:	7f 91       	pop	r23
+ 228:	6f 91       	pop	r22
+ 22a:	5f 91       	pop	r21
+ 22c:	4f 91       	pop	r20
+ 22e:	3f 91       	pop	r19
+ 230:	2f 91       	pop	r18
+ 232:	0f 90       	pop	r0
+ 234:	0f be       	out	0x3f, r0	; 63
+ 236:	0f 90       	pop	r0
+ 238:	1f 90       	pop	r1
+ 23a:	18 95       	reti
+
+0000023c <__vector_14>:
+
+// Rutina de Servicio de Interrupción de Timer 0 - Compare Match A
+// Luego de haberse generado un nivel bajo, se pasa a nivel alto
+ISR(TIMER0_COMPA_vect)
+{
+ 23c:	1f 92       	push	r1
+ 23e:	0f 92       	push	r0
+ 240:	0f b6       	in	r0, 0x3f	; 63
+ 242:	0f 92       	push	r0
+ 244:	11 24       	eor	r1, r1
+ 246:	2f 93       	push	r18
+ 248:	3f 93       	push	r19
+ 24a:	4f 93       	push	r20
+ 24c:	5f 93       	push	r21
+ 24e:	6f 93       	push	r22
+ 250:	7f 93       	push	r23
+ 252:	8f 93       	push	r24
+ 254:	9f 93       	push	r25
+ 256:	af 93       	push	r26
+ 258:	bf 93       	push	r27
+ 25a:	ef 93       	push	r30
+ 25c:	ff 93       	push	r31
+	LED_OFF(PIN_RED);
+ 25e:	85 e0       	ldi	r24, 0x05	; 5
+ 260:	0e 94 9a 00 	call	0x134	; 0x134 <LED_OFF>
+}
+ 264:	ff 91       	pop	r31
+ 266:	ef 91       	pop	r30
+ 268:	bf 91       	pop	r27
+ 26a:	af 91       	pop	r26
+ 26c:	9f 91       	pop	r25
+ 26e:	8f 91       	pop	r24
+ 270:	7f 91       	pop	r23
+ 272:	6f 91       	pop	r22
+ 274:	5f 91       	pop	r21
+ 276:	4f 91       	pop	r20
+ 278:	3f 91       	pop	r19
+ 27a:	2f 91       	pop	r18
+ 27c:	0f 90       	pop	r0
+ 27e:	0f be       	out	0x3f, r0	; 63
+ 280:	0f 90       	pop	r0
+ 282:	1f 90       	pop	r1
+ 284:	18 95       	reti
+
+00000286 <main>:
+volatile char RX_Buffer=0;
+
+volatile uint8_t flag_intensidad=1;
+uint8_t intensidad;
+
+int main(void) {
+ 286:	cf 93       	push	r28
+ 288:	df 93       	push	r29
+ 28a:	1f 92       	push	r1
+ 28c:	cd b7       	in	r28, 0x3d	; 61
+ 28e:	de b7       	in	r29, 0x3e	; 62
+	volatile char dato = 0;
+ 290:	19 82       	std	Y+1, r1	; 0x01
+	// Inicialización de Timer
+	RELOJ_T1_Init();
+ 292:	0e 94 e8 01 	call	0x3d0	; 0x3d0 <RELOJ_T1_Init>
+	RELOJ_T0_Init();
+ 296:	0e 94 de 01 	call	0x3bc	; 0x3bc <RELOJ_T0_Init>
+	RELOJ_Start_Both();
+ 29a:	0e 94 00 02 	call	0x400	; 0x400 <RELOJ_Start_Both>
+	// Inicialización de LEDs
+	LED_Init();
+ 29e:	0e 94 9d 00 	call	0x13a	; 0x13a <LED_Init>
+
+	// Inicialización de Conversor ADC
+	ADC_Init();
+ 2a2:	0e 94 53 00 	call	0xa6	; 0xa6 <ADC_Init>
+	ADC_Enable(); // Habilitar el ADC para que esté listo para conversiones
+ 2a6:	0e 94 69 00 	call	0xd2	; 0xd2 <ADC_Enable>
+	
+	uint8_t red = 255;
+	uint8_t green = 0;
+	uint8_t blue = 0;
+
+	SerialPort_Init(BR9600);
+ 2aa:	87 e6       	ldi	r24, 0x67	; 103
+ 2ac:	0e 94 47 02 	call	0x48e	; 0x48e <SerialPort_Init>
+	SerialPort_TX_Enable();			// Activo el Transmisor del Puerto Serie
+ 2b0:	0e 94 51 02 	call	0x4a2	; 0x4a2 <SerialPort_TX_Enable>
+	SerialPort_RX_Enable();			// Activo el Receptor del Puerto Serie 
+ 2b4:	0e 94 57 02 	call	0x4ae	; 0x4ae <SerialPort_RX_Enable>
+
+	SerialPort_Send_String(msg1);
+ 2b8:	8a e4       	ldi	r24, 0x4A	; 74
+ 2ba:	91 e0       	ldi	r25, 0x01	; 1
+ 2bc:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <SerialPort_Send_String>
+	SerialPort_Send_String(msg2);
+ 2c0:	81 e0       	ldi	r24, 0x01	; 1
+ 2c2:	91 e0       	ldi	r25, 0x01	; 1
+ 2c4:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <SerialPort_Send_String>
+	SerialPort_RX_Interrupt_Enable();
+ 2c8:	0e 94 5d 02 	call	0x4ba	; 0x4ba <SerialPort_RX_Interrupt_Enable>
+	sei();
+ 2cc:	78 94       	sei
+	
+    while (1) 
+    {
+		if (flag_intensidad == 0){
+ 2ce:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 2d2:	81 11       	cpse	r24, r1
+ 2d4:	fc cf       	rjmp	.-8      	; 0x2ce <main+0x48>
+			dato= RX_Buffer;
+ 2d6:	80 91 cc 01 	lds	r24, 0x01CC	; 0x8001cc <__data_end>
+ 2da:	89 83       	std	Y+1, r24	; 0x01
+			flag_intensidad=1;
+ 2dc:	81 e0       	ldi	r24, 0x01	; 1
+ 2de:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+			
+			switch (dato) {
+ 2e2:	89 81       	ldd	r24, Y+1	; 0x01
+ 2e4:	87 34       	cpi	r24, 0x47	; 71
+ 2e6:	01 f1       	breq	.+64     	; 0x328 <main+0xa2>
+ 2e8:	82 35       	cpi	r24, 0x52	; 82
+ 2ea:	19 f0       	breq	.+6      	; 0x2f2 <main+0x6c>
+ 2ec:	82 34       	cpi	r24, 0x42	; 66
+ 2ee:	79 f7       	brne	.-34     	; 0x2ce <main+0x48>
+ 2f0:	37 c0       	rjmp	.+110    	; 0x360 <main+0xda>
+				case 'R':
+					SerialPort_Send_String("Modificando el color Rojo.\r\n");
+ 2f2:	84 e7       	ldi	r24, 0x74	; 116
+ 2f4:	91 e0       	ldi	r25, 0x01	; 1
+ 2f6:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <SerialPort_Send_String>
+					
+					while (flag_intensidad){
+ 2fa:	11 c0       	rjmp	.+34     	; 0x31e <main+0x98>
+						// Cambiar el color del LED según el valor del sensor de luz
+						intensidad = ADC_GetResult();
+ 2fc:	0e 94 6f 00 	call	0xde	; 0xde <ADC_GetResult>
+ 300:	80 93 cd 01 	sts	0x01CD, r24	; 0x8001cd <intensidad>
+						red = intensidad;
+						green = 0;
+						blue = 0;
+						// Generar señales PWM para los LEDs con el color seleccionado
+						LED_Update(red, green, blue);
+ 304:	40 e0       	ldi	r20, 0x00	; 0
+ 306:	60 e0       	ldi	r22, 0x00	; 0
+ 308:	0e 94 e7 00 	call	0x1ce	; 0x1ce <LED_Update>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 30c:	2f ef       	ldi	r18, 0xFF	; 255
+ 30e:	81 ee       	ldi	r24, 0xE1	; 225
+ 310:	94 e0       	ldi	r25, 0x04	; 4
+ 312:	21 50       	subi	r18, 0x01	; 1
+ 314:	80 40       	sbci	r24, 0x00	; 0
+ 316:	90 40       	sbci	r25, 0x00	; 0
+ 318:	e1 f7       	brne	.-8      	; 0x312 <main+0x8c>
+ 31a:	00 c0       	rjmp	.+0      	; 0x31c <main+0x96>
+ 31c:	00 00       	nop
+			
+			switch (dato) {
+				case 'R':
+					SerialPort_Send_String("Modificando el color Rojo.\r\n");
+					
+					while (flag_intensidad){
+ 31e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 322:	81 11       	cpse	r24, r1
+ 324:	eb cf       	rjmp	.-42     	; 0x2fc <main+0x76>
+ 326:	d3 cf       	rjmp	.-90     	; 0x2ce <main+0x48>
+				
+					break;
+				
+				case 'G':
+				
+					SerialPort_Send_String("Modificando el color Verde.\r\n");
+ 328:	81 e9       	ldi	r24, 0x91	; 145
+ 32a:	91 e0       	ldi	r25, 0x01	; 1
+ 32c:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <SerialPort_Send_String>
+					// Enviar confirmación por UART
+					
+					while (flag_intensidad){
+ 330:	12 c0       	rjmp	.+36     	; 0x356 <main+0xd0>
+						// Cambiar el color del LED según el valor del sensor de luz
+						intensidad = ADC_GetResult();
+ 332:	0e 94 6f 00 	call	0xde	; 0xde <ADC_GetResult>
+ 336:	80 93 cd 01 	sts	0x01CD, r24	; 0x8001cd <intensidad>
+						red = 0;
+						green = intensidad;
+						blue = 0;
+						// Generar señales PWM para los LEDs con el color seleccionado
+						LED_Update(red, green, blue);
+ 33a:	40 e0       	ldi	r20, 0x00	; 0
+ 33c:	68 2f       	mov	r22, r24
+ 33e:	80 e0       	ldi	r24, 0x00	; 0
+ 340:	0e 94 e7 00 	call	0x1ce	; 0x1ce <LED_Update>
+ 344:	2f ef       	ldi	r18, 0xFF	; 255
+ 346:	81 ee       	ldi	r24, 0xE1	; 225
+ 348:	94 e0       	ldi	r25, 0x04	; 4
+ 34a:	21 50       	subi	r18, 0x01	; 1
+ 34c:	80 40       	sbci	r24, 0x00	; 0
+ 34e:	90 40       	sbci	r25, 0x00	; 0
+ 350:	e1 f7       	brne	.-8      	; 0x34a <main+0xc4>
+ 352:	00 c0       	rjmp	.+0      	; 0x354 <main+0xce>
+ 354:	00 00       	nop
+				case 'G':
+				
+					SerialPort_Send_String("Modificando el color Verde.\r\n");
+					// Enviar confirmación por UART
+					
+					while (flag_intensidad){
+ 356:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 35a:	81 11       	cpse	r24, r1
+ 35c:	ea cf       	rjmp	.-44     	; 0x332 <main+0xac>
+ 35e:	b7 cf       	rjmp	.-146    	; 0x2ce <main+0x48>
+					}
+				
+					break;
+				
+				case 'B':
+					SerialPort_Send_String("Modificando el color Azul.\r\n");
+ 360:	8f ea       	ldi	r24, 0xAF	; 175
+ 362:	91 e0       	ldi	r25, 0x01	; 1
+ 364:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <SerialPort_Send_String>
+					
+					while (flag_intensidad){
+ 368:	12 c0       	rjmp	.+36     	; 0x38e <main+0x108>
+						// Cambiar el color del LED según el valor del sensor de luz
+						intensidad = ADC_GetResult();
+ 36a:	0e 94 6f 00 	call	0xde	; 0xde <ADC_GetResult>
+ 36e:	80 93 cd 01 	sts	0x01CD, r24	; 0x8001cd <intensidad>
+						red = 0;
+						green = 0;
+						blue = intensidad;
+						// Generar señales PWM para los LEDs con el color seleccionado
+						LED_Update(red, green, blue);
+ 372:	48 2f       	mov	r20, r24
+ 374:	60 e0       	ldi	r22, 0x00	; 0
+ 376:	80 e0       	ldi	r24, 0x00	; 0
+ 378:	0e 94 e7 00 	call	0x1ce	; 0x1ce <LED_Update>
+ 37c:	2f ef       	ldi	r18, 0xFF	; 255
+ 37e:	81 ee       	ldi	r24, 0xE1	; 225
+ 380:	94 e0       	ldi	r25, 0x04	; 4
+ 382:	21 50       	subi	r18, 0x01	; 1
+ 384:	80 40       	sbci	r24, 0x00	; 0
+ 386:	90 40       	sbci	r25, 0x00	; 0
+ 388:	e1 f7       	brne	.-8      	; 0x382 <main+0xfc>
+ 38a:	00 c0       	rjmp	.+0      	; 0x38c <main+0x106>
+ 38c:	00 00       	nop
+					break;
+				
+				case 'B':
+					SerialPort_Send_String("Modificando el color Azul.\r\n");
+					
+					while (flag_intensidad){
+ 38e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 392:	81 11       	cpse	r24, r1
+ 394:	ea cf       	rjmp	.-44     	; 0x36a <main+0xe4>
+ 396:	9b cf       	rjmp	.-202    	; 0x2ce <main+0x48>
+
+00000398 <__vector_18>:
+		 
+    }
+	return 0;
+}
+
+ISR(USART_RX_vect){
+ 398:	1f 92       	push	r1
+ 39a:	0f 92       	push	r0
+ 39c:	0f b6       	in	r0, 0x3f	; 63
+ 39e:	0f 92       	push	r0
+ 3a0:	11 24       	eor	r1, r1
+ 3a2:	8f 93       	push	r24
+	RX_Buffer = UDR0; //la lectura del UDR borra flag RXC
+ 3a4:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 3a8:	80 93 cc 01 	sts	0x01CC, r24	; 0x8001cc <__data_end>
+	flag_intensidad=0;
+ 3ac:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+}
+ 3b0:	8f 91       	pop	r24
+ 3b2:	0f 90       	pop	r0
+ 3b4:	0f be       	out	0x3f, r0	; 63
+ 3b6:	0f 90       	pop	r0
+ 3b8:	1f 90       	pop	r1
+ 3ba:	18 95       	reti
+
+000003bc <RELOJ_T0_Init>:
+#include <stdlib.h>  
+typedef enum {T1_PWM_A, T1_PWM_B, T0_NORMAL} RELOJ_Signal;
+#include "pwm.h"
+void RELOJ_T0_Init() {
+	// Deshabilitar todas las interrupciones de Timer 0
+	TIMSK0 &= ~((1<<TOIE0)|(1<<OCIE0A)|(1<<OCIE0B));
+ 3bc:	ee e6       	ldi	r30, 0x6E	; 110
+ 3be:	f0 e0       	ldi	r31, 0x00	; 0
+ 3c0:	80 81       	ld	r24, Z
+ 3c2:	88 7f       	andi	r24, 0xF8	; 248
+ 3c4:	80 83       	st	Z, r24
+	
+	// Asignar Modo Normal, se cuenta hasta 0xFF (255)
+	TCCR0A = 0;
+ 3c6:	14 bc       	out	0x24, r1	; 36
+	
+	// Detener reloj interno (CS0[2:0] = 0)
+	TCCR0B = 0;
+ 3c8:	15 bc       	out	0x25, r1	; 37
+	
+	// Al inicio, el LED está apagado (intensidad de color 0)
+	OCR0A = 0;
+ 3ca:	17 bc       	out	0x27, r1	; 39
+	
+	// Reiniciar contador a cero
+	TCNT0 = 0;
+ 3cc:	16 bc       	out	0x26, r1	; 38
+ 3ce:	08 95       	ret
+
+000003d0 <RELOJ_T1_Init>:
+}
+
+void RELOJ_T1_Init(){
+	// Deshabilitar interrupciones de Timer 1
+	TIMSK1 &= ~((1<<TOIE1)|(1<<OCIE1A)|(1<<OCIE1B));
+ 3d0:	ef e6       	ldi	r30, 0x6F	; 111
+ 3d2:	f0 e0       	ldi	r31, 0x00	; 0
+ 3d4:	80 81       	ld	r24, Z
+ 3d6:	88 7f       	andi	r24, 0xF8	; 248
+ 3d8:	80 83       	st	Z, r24
+	
+	// Asignar Modo Fast PWM de 8 bits (WGM1[3:0] = 5)
+	// Detener reloj interno (CS1[2:0] = 0)
+	TCCR1B = (1<<WGM12);
+ 3da:	88 e0       	ldi	r24, 0x08	; 8
+ 3dc:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+	TCCR1A = (1<<WGM10);
+ 3e0:	81 e0       	ldi	r24, 0x01	; 1
+ 3e2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+	
+	// Reiniciar valores de comparación
+	OCR1A = 0;
+ 3e6:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 3ea:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+	OCR1B = 0;
+ 3ee:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 3f2:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+	
+	// Reiniciar contador a cero
+	TCNT1 = 0;
+ 3f6:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+ 3fa:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+ 3fe:	08 95       	ret
+
+00000400 <RELOJ_Start_Both>:
+}
+
+void RELOJ_Start_Both(){
+	// Asignar prescaler de N = 1024 (CS0[2:0] = 5)
+	// La frecuencia generada es 61 Hz, mayor a 50 Hz
+	TCCR0B |= (1<<CS02)|(1<<CS00);
+ 400:	85 b5       	in	r24, 0x25	; 37
+ 402:	85 60       	ori	r24, 0x05	; 5
+ 404:	85 bd       	out	0x25, r24	; 37
+	TCCR1B |= (1<<CS12)|(1<<CS10);
+ 406:	e1 e8       	ldi	r30, 0x81	; 129
+ 408:	f0 e0       	ldi	r31, 0x00	; 0
+ 40a:	80 81       	ld	r24, Z
+ 40c:	85 60       	ori	r24, 0x05	; 5
+ 40e:	80 83       	st	Z, r24
+ 410:	08 95       	ret
+
+00000412 <RELOJ_T1_PWM_A_Enable>:
+
+// -------------------------------- TIMER 1 ---------------------------
+
+void RELOJ_T1_PWM_A_Enable(){
+	// Establecer modo invertido para OC1A
+	TCCR1A |= (1<<COM1A1)|(1<<COM1A0);
+ 412:	e0 e8       	ldi	r30, 0x80	; 128
+ 414:	f0 e0       	ldi	r31, 0x00	; 0
+ 416:	80 81       	ld	r24, Z
+ 418:	80 6c       	ori	r24, 0xC0	; 192
+ 41a:	80 83       	st	Z, r24
+ 41c:	08 95       	ret
+
+0000041e <RELOJ_T1_PWM_B_Enable>:
+}
+
+void RELOJ_T1_PWM_B_Enable(){
+	// Establecer modo invertido para OC1B
+	TCCR1A |= (1<<COM1B1)|(1<<COM1B0);
+ 41e:	e0 e8       	ldi	r30, 0x80	; 128
+ 420:	f0 e0       	ldi	r31, 0x00	; 0
+ 422:	80 81       	ld	r24, Z
+ 424:	80 63       	ori	r24, 0x30	; 48
+ 426:	80 83       	st	Z, r24
+ 428:	08 95       	ret
+
+0000042a <RELOJ_T1_PWM_A_Disable>:
+}
+
+void RELOJ_T1_PWM_A_Disable(){
+	// Desconectar salida OC1A
+	TCCR1A &= ~((1<<COM1A1)|(1<<COM1A0));
+ 42a:	e0 e8       	ldi	r30, 0x80	; 128
+ 42c:	f0 e0       	ldi	r31, 0x00	; 0
+ 42e:	80 81       	ld	r24, Z
+ 430:	8f 73       	andi	r24, 0x3F	; 63
+ 432:	80 83       	st	Z, r24
+ 434:	08 95       	ret
+
+00000436 <RELOJ_T1_PWM_B_Disable>:
+}
+
+void RELOJ_T1_PWM_B_Disable(){
+	// Desconectar salida OC1B
+	TCCR1A &= ~((1<<COM1B1)|(1<<COM1B0));
+ 436:	e0 e8       	ldi	r30, 0x80	; 128
+ 438:	f0 e0       	ldi	r31, 0x00	; 0
+ 43a:	80 81       	ld	r24, Z
+ 43c:	8f 7c       	andi	r24, 0xCF	; 207
+ 43e:	80 83       	st	Z, r24
+ 440:	08 95       	ret
+
+00000442 <RELOJ_T1_PWM_A_UpdateOCR>:
+}
+
+// Modifica el valor del registro OCR1A
+// En este proyecto se traduce como intensidad de azul
+void RELOJ_T1_PWM_A_UpdateOCR(uint8_t valor){
+	OCR1A = valor;
+ 442:	90 e0       	ldi	r25, 0x00	; 0
+ 444:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 448:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 44c:	08 95       	ret
+
+0000044e <RELOJ_T1_PWM_B_UpdateOCR>:
+}
+
+// Modifica el valor del registro OCR1B
+// En este proyecto se traduce como intensidad de verde
+void RELOJ_T1_PWM_B_UpdateOCR(uint8_t valor){
+	OCR1B = valor;
+ 44e:	90 e0       	ldi	r25, 0x00	; 0
+ 450:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 454:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+ 458:	08 95       	ret
+
+0000045a <RELOJ_T0_OVF_Interrupt_Enable>:
+}
+
+// ------------------------------ TIMER 0 ----------------------------------
+
+void RELOJ_T0_OVF_Interrupt_Enable(){
+	TIMSK0 |= (1<<TOIE0);
+ 45a:	ee e6       	ldi	r30, 0x6E	; 110
+ 45c:	f0 e0       	ldi	r31, 0x00	; 0
+ 45e:	80 81       	ld	r24, Z
+ 460:	81 60       	ori	r24, 0x01	; 1
+ 462:	80 83       	st	Z, r24
+ 464:	08 95       	ret
+
+00000466 <RELOJ_T0_OVF_Interrupt_Disable>:
+}
+
+void RELOJ_T0_OVF_Interrupt_Disable(){
+	TIMSK0 &= ~(1<<TOIE0);
+ 466:	ee e6       	ldi	r30, 0x6E	; 110
+ 468:	f0 e0       	ldi	r31, 0x00	; 0
+ 46a:	80 81       	ld	r24, Z
+ 46c:	8e 7f       	andi	r24, 0xFE	; 254
+ 46e:	80 83       	st	Z, r24
+ 470:	08 95       	ret
+
+00000472 <RELOJ_T0_COMPA_Interrupt_Enable>:
+}
+
+void RELOJ_T0_COMPA_Interrupt_Enable(){
+	TIMSK0 |= (1<<OCIE0A);
+ 472:	ee e6       	ldi	r30, 0x6E	; 110
+ 474:	f0 e0       	ldi	r31, 0x00	; 0
+ 476:	80 81       	ld	r24, Z
+ 478:	82 60       	ori	r24, 0x02	; 2
+ 47a:	80 83       	st	Z, r24
+ 47c:	08 95       	ret
+
+0000047e <RELOJ_T0_COMPA_Interrupt_Disable>:
+}
+
+void RELOJ_T0_COMPA_Interrupt_Disable(){
+	TIMSK0 &= ~(1<<OCIE0A);
+ 47e:	ee e6       	ldi	r30, 0x6E	; 110
+ 480:	f0 e0       	ldi	r31, 0x00	; 0
+ 482:	80 81       	ld	r24, Z
+ 484:	8d 7f       	andi	r24, 0xFD	; 253
+ 486:	80 83       	st	Z, r24
+ 488:	08 95       	ret
+
+0000048a <RELOJ_T0_UpdateOCR>:
+}
+
+void RELOJ_T0_UpdateOCR(uint8_t valor){
+	OCR0A = valor;
+ 48a:	87 bd       	out	0x27, r24	; 39
+ 48c:	08 95       	ret
+
+0000048e <SerialPort_Init>:
+
+}
+
+void SerialPort_TX_Interrupt_Disable(void)
+{
+	UCSR0B &=~(1<<UDRIE0);
+ 48e:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+ 492:	96 e0       	ldi	r25, 0x06	; 6
+ 494:	90 93 c2 00 	sts	0x00C2, r25	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+ 498:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+ 49c:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+ 4a0:	08 95       	ret
+
+000004a2 <SerialPort_TX_Enable>:
+ 4a2:	e1 ec       	ldi	r30, 0xC1	; 193
+ 4a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 4a6:	80 81       	ld	r24, Z
+ 4a8:	88 60       	ori	r24, 0x08	; 8
+ 4aa:	80 83       	st	Z, r24
+ 4ac:	08 95       	ret
+
+000004ae <SerialPort_RX_Enable>:
+
+
+// Inicialización de Receptor
+
+void SerialPort_RX_Enable(void){
+	UCSR0B |= (1<<RXEN0);
+ 4ae:	e1 ec       	ldi	r30, 0xC1	; 193
+ 4b0:	f0 e0       	ldi	r31, 0x00	; 0
+ 4b2:	80 81       	ld	r24, Z
+ 4b4:	80 61       	ori	r24, 0x10	; 16
+ 4b6:	80 83       	st	Z, r24
+ 4b8:	08 95       	ret
+
+000004ba <SerialPort_RX_Interrupt_Enable>:
+}
+
+void SerialPort_RX_Interrupt_Enable(void){
+	UCSR0B |= (1<<RXCIE0);
+ 4ba:	e1 ec       	ldi	r30, 0xC1	; 193
+ 4bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4be:	80 81       	ld	r24, Z
+ 4c0:	80 68       	ori	r24, 0x80	; 128
+ 4c2:	80 83       	st	Z, r24
+ 4c4:	08 95       	ret
+
+000004c6 <SerialPort_Wait_For_TX_Buffer_Free>:
+// Transmisión
+
+// Espera hasta que el buffer de TX este libre.
+void SerialPort_Wait_For_TX_Buffer_Free(void){
+	// Pooling - Bloqueante hasta que termine de transmitir.
+	while(!(UCSR0A & (1<<UDRE0)));
+ 4c6:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 4ca:	85 ff       	sbrs	r24, 5
+ 4cc:	fc cf       	rjmp	.-8      	; 0x4c6 <SerialPort_Wait_For_TX_Buffer_Free>
+}
+ 4ce:	08 95       	ret
+
+000004d0 <SerialPort_Send_Data>:
+
+void SerialPort_Send_Data(char data){
+	UDR0 = data;
+ 4d0:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 4d4:	08 95       	ret
+
+000004d6 <SerialPort_Send_String>:
+}
+
+void SerialPort_Send_String(char * msg){ //msg -> "Hola como andan hoy?" 20 ASCII+findecadena, tardo=20ms
+ 4d6:	ef 92       	push	r14
+ 4d8:	ff 92       	push	r15
+ 4da:	0f 93       	push	r16
+ 4dc:	1f 93       	push	r17
+ 4de:	cf 93       	push	r28
+ 4e0:	7c 01       	movw	r14, r24
+	uint8_t i = 0;
+ 4e2:	c0 e0       	ldi	r28, 0x00	; 0
+	//'\0' = 0x00
+	while(msg[i]){ // *(msg+i)
+ 4e4:	07 c0       	rjmp	.+14     	; 0x4f4 <SerialPort_Send_String+0x1e>
+		SerialPort_Wait_For_TX_Buffer_Free(); //9600bps formato 8N1, 10bits, 10.Tbit=10/9600=1ms 
+ 4e6:	0e 94 63 02 	call	0x4c6	; 0x4c6 <SerialPort_Wait_For_TX_Buffer_Free>
+		SerialPort_Send_Data(msg[i]);
+ 4ea:	f8 01       	movw	r30, r16
+ 4ec:	80 81       	ld	r24, Z
+ 4ee:	0e 94 68 02 	call	0x4d0	; 0x4d0 <SerialPort_Send_Data>
+		i++;
+ 4f2:	cf 5f       	subi	r28, 0xFF	; 255
+}
+
+void SerialPort_Send_String(char * msg){ //msg -> "Hola como andan hoy?" 20 ASCII+findecadena, tardo=20ms
+	uint8_t i = 0;
+	//'\0' = 0x00
+	while(msg[i]){ // *(msg+i)
+ 4f4:	87 01       	movw	r16, r14
+ 4f6:	0c 0f       	add	r16, r28
+ 4f8:	11 1d       	adc	r17, r1
+ 4fa:	f8 01       	movw	r30, r16
+ 4fc:	80 81       	ld	r24, Z
+ 4fe:	81 11       	cpse	r24, r1
+ 500:	f2 cf       	rjmp	.-28     	; 0x4e6 <SerialPort_Send_String+0x10>
+		SerialPort_Wait_For_TX_Buffer_Free(); //9600bps formato 8N1, 10bits, 10.Tbit=10/9600=1ms 
+		SerialPort_Send_Data(msg[i]);
+		i++;
+	}
+}
+ 502:	cf 91       	pop	r28
+ 504:	1f 91       	pop	r17
+ 506:	0f 91       	pop	r16
+ 508:	ff 90       	pop	r15
+ 50a:	ef 90       	pop	r14
+ 50c:	08 95       	ret
+
+0000050e <_exit>:
+ 50e:	f8 94       	cli
+
+00000510 <__stop_program>:
+ 510:	ff cf       	rjmp	.-2      	; 0x510 <__stop_program>
